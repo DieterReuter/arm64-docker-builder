@@ -7,12 +7,12 @@ DOCKER_VERSION=1.7.0-rc2
 mkdir -p ~/src/
 cd ~/src/
 if [ ! -d ./docker ]; then
-	echo "Clone into docker/docker repository"
-    git clone -mirror https://github.com/docker/docker.git
+  echo "Clone into docker/docker repository"
+  git clone https://github.com/docker/docker
 fi
 
 echo "Fetch latest changes of docker/docker repository"
-cd ~/src/docker
+cd ~/src/docker/
 git checkout master
 git fetch -q --all -p
 
