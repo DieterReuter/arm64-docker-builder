@@ -98,4 +98,7 @@ Get http:///var/run/docker.sock/v1.19/version: dial unix /var/run/docker.sock: n
 
 Success, it runs in client mode and the arch type is `linux/arm64`.
 
+---
+The MIT License (MIT)
 
+Copyright (c) 2015 Dieter Reuter
