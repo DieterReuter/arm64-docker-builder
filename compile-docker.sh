@@ -23,4 +23,5 @@ echo "Docker version=$git_tag"
 
 #git checkout v$DOCKER_VERSION
 git checkout $git_tag
+AUTO_GOPATH=1
 ./hack/make.sh dynbinary
