@@ -25,7 +25,7 @@ If you don't have an ARM64 machine at hand like me, you have to create a QEMU bo
 
 ### Step 1 - install dependencies
 
-First we have to install some development dependencies like Git, Curl, GOLANG and some more specific dependecies for Docker like btrfs, sqlite ad devmapper. Please keep in mind, this can take a serious long time on a QEMU emulated machine.
+First we have to install some development dependencies like Git, Curl, GOLANG and some more specific dependencies for Docker like btrfs, sqlite and devmapper. Please keep in mind, this can take a serious long time on a QEMU emulated machine.
 ```
 $ ./install-arm64-devtools.sh
 ```
@@ -49,7 +49,7 @@ OK, everything is there. Let's go ahead and compile Docker.
 
 ### Step 2 - compile the latest version of Docker
 
-The compile script will first clone into the docker/docker repo, so this will take some time. But don't worry for subsequent builds the script just fetches only the latest changes which is much faster. The compile time depends on your host machine and takes around 5 to 20 minutes, the later on a QEMU emulated machine on DigitalOcean; on a local VirtualBox machine it could be faster. And on a read hardware you should get the best performance - but who has already an ARM64 power horse at hand?
+The compile script will first clone into the docker/docker repo, so this will take some time. But don't worry for subsequent builds the script just fetches only the latest changes which is much faster. The compile time depends on your host machine and takes around 5 to 20 minutes, the later on a QEMU emulated machine on DigitalOcean; on a local VirtualBox machine it could be faster. And on real hardware you should get the best performance - but who has already an ARM64 power horse at hand?
 ```
 $ ./compile-docker.sh
 
@@ -121,7 +121,13 @@ Get http:///var/run/docker.sock/v1.19/version: dial unix /var/run/docker.sock: n
 ```
 
 Success, it runs in client mode and the arch type is `linux/arm64`.
-Have fun to use it, and please share your experience with me.
+
+
+## Further steps
+
+The next steps should be to get the Docker engine running in daemon mode on the ARM64 machine. But I think, this will take some more time to adjust the appropriate kernel options, include all needed kernel modules like Overlay filesystem and so on. And maybe also serious amount of testing and maby setting up a completely automated build server for compiling and testing. This should be going even better as soon as we have some real hardware to speed up the dev-test cycles.
+
+Have fun to use this tutorial as a starting point, and please share your experience with me.
 
 ---
 The MIT License (MIT)
