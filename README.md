@@ -125,7 +125,7 @@ Success, it runs in client mode and the arch type is `linux/arm64`.
 
 ## Further steps
 
-The next steps should be to get the Docker engine running in daemon mode on the ARM64 machine. But I think, this will take some more time to adjust the appropriate kernel options, include all needed kernel modules like Overlay filesystem and so on. And maybe also serious amount of testing and maby setting up a completely automated build server for compiling and testing. This should be going even better as soon as we have some real hardware to speed up the dev-test cycles.
+The next steps should be to get the Docker engine running in daemon mode on the ARM64 machine. But I think, this will take some more time to adjust the appropriate kernel options, include all needed kernel modules like Overlay filesystem and so on. And maybe also a serious amount of testing and possibly setting up a completely automated build server for compiling and testing Docker on ARM64 machines. This should get even better as soon as we have some real hardware to speed up the dev-test cycles.
 
 Have fun to use this tutorial as a starting point, and please share your experience with me.
 
