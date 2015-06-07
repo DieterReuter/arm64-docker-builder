@@ -1,8 +1,7 @@
 #!/bin/bash
 
-DOCKER_VERSION=1.6.2
-DOCKER_VERSION=1.7.0-rc1
-DOCKER_VERSION=1.7.0-rc2
+DOCKER_VERSION="${1:-LATEST}"
+echo "Requested Docker version=$DOCKER_VERSION"
 
 mkdir -p ~/src/
 cd ~/src/
@@ -17,11 +16,14 @@ git checkout master
 git fetch -q --all -p
 
 # detect latest Docker release tag
-TAG_MESSAGE=$(git log --no-walk --tags --pretty="%h %d %cd" --max-count=1)
-git_tag=$(echo $TAG_MESSAGE | sed -e 's/^.*tag: //' -e 's/).*$//' -e 's/,.*$//')
-echo "Docker version=$git_tag"
+if [ "${DOCKER_VERSION}" = "LATEST" ]; then
+  TAG_MESSAGE=$(git log --no-walk --tags --pretty="%h %d %cd" --max-count=1)
+  GIT_TAG=$(echo $TAG_MESSAGE | sed -e 's/^.*tag: //' -e 's/).*$//' -e 's/,.*$//')
+else
+  GIT_TAG="v${DOCKER_VERSION}"
+fi
+echo "Using GIT_TAG=$GIT_TAG"
 
-#git checkout v$DOCKER_VERSION
-git checkout $git_tag
+git checkout $GIT_TAG
 export AUTO_GOPATH=1
 ./hack/make.sh dynbinary
