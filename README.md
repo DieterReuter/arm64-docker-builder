@@ -6,12 +6,12 @@ on an ARM64 (or AARCH64) machine which is running Ubuntu 15.04. This works well,
 
 ### Step 1 - install dependencies
 ```
-./install-arm64-devtools.sh
+$ ./install-arm64-devtools.sh
 ```
 Maybe if you run into trouble that the install process gets interrupted while generating a new `/boot/initrd.img`, you can fix this with the following commands (of course inside the ARM64 machine):
 ```
-sudo dpkg --configure -a --force-depends
-sudo apt-get install -f
+$ sudo dpkg --configure -a --force-depends
+$ sudo apt-get install -f
 ```
 
 OK, let's skip all these problems for now and just ignore it. For a QEMU machine it could also happens that we have to reboot the machine.
@@ -26,8 +26,9 @@ OK, everything is there. Let's go ahead and compile Docker.
 
 
 ### Step 2 - compile the latest version of Docker
+The compile script will first clone into the docker/docker repo, so this will take some time. But don't worry for subsequent builds the script just fetches only the latest changes which is much faster. The compile time depends on your host machine and takes around 5 to 20 minutes, the later on a QEMU emulated machine on DigitalOcean; on a local VirtualBox machine it could be faster. And on a read hardware you should get the best performance - but who has already an ARM64 power horse at hand?
 ```
-./compile-docker.sh
+$ ./compile-docker.sh
 
 Fetch latest changes of docker/docker repository
 Previous HEAD position was 7ddecf7... Bump version to v1.7.0
@@ -63,7 +64,7 @@ Created binary: bundles/1.7.0-rc2/dynbinary/docker-1.7.0-rc2
 
 Here are our fresh build artifacts:
 ```
-ls -al bundles/1.7.0-rc2/dynbinary/
+$ ls -al bundles/1.7.0-rc2/dynbinary/
 
 total 21052
 drwxrwxr-x 2 ubuntu ubuntu     4096 Jun  7 13:13 .
@@ -80,13 +81,13 @@ lrwxrwxrwx 1 ubuntu ubuntu       20 Jun  7 12:58 dockerinit -> dockerinit-1.7.0-
 
 If you like, you can also build a specific release version of Docker:
 ```
-./compile-docker.sh 1.7.0-rc1
+$ ./compile-docker.sh 1.7.0-rc1
 ```
 
 
 ### Step 3 - quickly test the compiled Docker binary
 ```
-./bundles/1.7.0-rc2/dynbinary/docker-1.7.0-rc2 version
+$ ./bundles/1.7.0-rc2/dynbinary/docker-1.7.0-rc2 version
 
 Client version: 1.7.0-rc2
 Client API version: 1.19
