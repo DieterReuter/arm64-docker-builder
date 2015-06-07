@@ -18,10 +18,18 @@ a local VirtualBox (on my MacBookPro) and also the same way on a DigitalOcean Dr
 to spin up such a QEMU ARM64 box within 5 or 10 minutes on your local machine or in the cloud.
 
 
+### Prerequisites
+
+If you don't have an ARM64 machine at hand like me, you have to create a QEMU box first. This can be done with my repo https://github.com/DieterReuter/qemu-arm-box. Once your ARM64 machine is up and running, just login and go ahead.
+
+
 ### Step 1 - install dependencies
+
+First we have to install some development dependencies like Git, Curl, GOLANG and some more specific dependecies for Docker like btrfs, sqlite ad devmapper. Please keep in mind, this can take a serious long time on a QEMU emulated machine.
 ```
 $ ./install-arm64-devtools.sh
 ```
+
 Maybe if you run into trouble that the install process gets interrupted while generating a new `/boot/initrd.img`, you can fix this with the following commands (of course inside the ARM64 machine):
 ```
 $ sudo dpkg --configure -a --force-depends
@@ -40,6 +48,7 @@ OK, everything is there. Let's go ahead and compile Docker.
 
 
 ### Step 2 - compile the latest version of Docker
+
 The compile script will first clone into the docker/docker repo, so this will take some time. But don't worry for subsequent builds the script just fetches only the latest changes which is much faster. The compile time depends on your host machine and takes around 5 to 20 minutes, the later on a QEMU emulated machine on DigitalOcean; on a local VirtualBox machine it could be faster. And on a read hardware you should get the best performance - but who has already an ARM64 power horse at hand?
 ```
 $ ./compile-docker.sh
