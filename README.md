@@ -1,7 +1,21 @@
 # arm64-docker-builder
 
 This repo contains all necessary details and scripts how to compile `Docker` 
-on an ARM64 (or AARCH64) machine which is running Ubuntu 15.04. This works well, even in a QEMU emulated AARCH64 machine with an Ubuntu 15.04 Cloud Image for ARM64. I've tested all these steps with a QEMU box which could be run with the help of `vagrant` in VirtualBox or on DigitalOcean with the following repo https://github.com/DieterReuter/qemu-arm-box.
+on an ARM64 (or AARCH64) machine which is running Ubuntu 15.04. This works well, even in a QEMU emulated AARCH64 
+machine with an Ubuntu 15.04 Cloud Image for ARM64. I've tested all these steps with a QEMU box which could be 
+run with the help of `vagrant` in VirtualBox or on DigitalOcean with the following 
+repo https://github.com/DieterReuter/qemu-arm-box.
+
+## Background
+
+For the last six months or so, I was working hard in my spare time to get Docker running easily for some ARM 32bit 
+systems like the Raspberry Pi. For this year there should be a few new ARM devices coming on the market with 64bit CPUs, 
+and I'd like to get Docker running on these ARM64 devices as soon as possible.
+
+I don't have any ARM64 machine at hand, so I tried to set up a QEMU emulated ARM64 (aka AARCH64) in a reproducible way. 
+I choose Vagrant and created a box running Ubuntu 15.04. With the help of Vagrant it was easy to set up such a box in 
+a local VirtualBox (on my MacBookPro) and also the same way on a DigitalOcean Droplet. I think, now it's easy for everybody
+to spin up such a QEMU ARM64 box within 5 or 10 minutes on your local machine or in the cloud.
 
 
 ### Step 1 - install dependencies
@@ -98,6 +112,7 @@ Get http:///var/run/docker.sock/v1.19/version: dial unix /var/run/docker.sock: n
 ```
 
 Success, it runs in client mode and the arch type is `linux/arm64`.
+Have fun to use it, and please share your experience with me.
 
 ---
 The MIT License (MIT)
